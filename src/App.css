@@ -1,38 +1,173 @@
 .App {
-  text-align: center;
-}
+  background-color: #F4F5F6;
+  width: 100%;
+  height: 100dvh;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+  gap: 20px;
+  padding: 20px;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  .Fields-Container {
+    max-width: 360px;
+    margin-inline: auto;
+    display: grid;
+    gap: 10px;
+    width: 100%;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    & input {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #CCCCCC;
+      outline: none;
+
+      &:focus {
+        background-color: #fafafa;
+      }
+    }
+
+    & button {
+      width: fit-content;
+      min-width: 140px;
+      padding: 5px 12px;
+      border: none;
+      border-radius: 8px;
+      margin-inline: auto;
+      background-color: teal;
+      color: #FFFFFF;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  .Filter-Container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 360px;
+    margin-inline: auto;
+    width: 100%;
+
+    & div {
+      display: flex;
+      align-items: end;
+      gap: 5px;
+
+      & input {
+        width: 18px;
+        accent-color: teal;
+        aspect-ratio: 1;
+      }
+
+      & label {
+        color: #444444;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .Tasks-List {
+    display: grid;
+    height: fit-content;
+    overflow: auto;
+    max-height: 100%;
+    gap: 15px;
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+
+    .Task-Box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      .Task-Details {
+        display: grid;
+        grid-template-columns: min-content 1fr;
+        gap: 2px 10px;
+        grid-template-rows: repeat(2, min-content);
+
+        & input {
+          grid-column: 1/2;
+          grid-row: 1/-1;
+          width: 20px;
+          accent-color: teal;
+          aspect-ratio: 1;
+          margin-block: auto;
+        }
+
+        & p {
+          font-size: 16px;
+          font-weight: 500;
+          color: #333333;
+        }
+
+        & span {
+          font-size: 14px;
+          color: #666666;
+        }
+      }
+
+      .Task-Actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        & button {
+          width: fit-content;
+          padding: 5px 12px;
+          border: none;
+          border-radius: 8px;
+          margin-inline: auto;
+          background-color: transparent;
+          outline-offset: -1px;
+          font-weight: 500;
+          cursor: pointer;
+          
+          &.Edit-Task {
+            outline: 1px solid teal;
+            color: teal;
+          }
+          &.Delete-Task {
+            outline: 1px solid tomato;
+            color: tomato;
+          }
+
+          &.Completed-Task {
+            opacity: 0.6;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  .No-Tasks {
+    text-align: center;
+    font-weight: 600;
+    opacity: 0.7;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+@media (max-width: 350px) {
+  .Task-Box {
+    flex-direction: column;
+    gap: 10px !important;
 
-.App-link {
-  color: #61dafb;
-}
+    .Task-Actions,
+    .Task-Details {
+      width: 100%;
+    }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+    .Task-Actions {
+
+      & button {
+        margin: 0 !important;
+      }
+    }
   }
 }
